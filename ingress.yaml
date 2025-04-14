@@ -16,4 +16,4 @@ spec:
               service:
                 name: product-service
                 port:
-                  number: 8999
+                  number: 80
