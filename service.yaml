@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: product-service
-  labels:
-    app: product-service
+  namespace: product-app
 spec:
   selector:
-    app: product-service
+    app: product
   ports:
     - protocol: TCP
-      port: 80  # Port mà các service khác có thể sử dụng để giao tiếp với product-service
-      targetPort: 8080  # Port mà container của product-service đang lắng nghe
-  type: ClusterIP 
+      port: 80
+      targetPort: 8080
+      nodePort: 30080
+  type: NodePort
