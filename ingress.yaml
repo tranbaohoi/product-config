@@ -2,15 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: product-service-ingress
-  namespace: ingress-nginx # <-- chỉ định namespace
+  namespace: product-app
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: product.local  # <-- bạn có thể đổi tên theo ý, hoặc bỏ nếu dùng qua IP
-      http:
+    - http:
         paths:
-          - path: /?(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
