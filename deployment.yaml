@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: app-demo
-          image: theeb2000/product-services:v22
+          image: theeb2000/product-services:v23
           ports:
             - containerPort: 8080
 ---
