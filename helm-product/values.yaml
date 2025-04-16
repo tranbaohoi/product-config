@@ -5,7 +5,7 @@ replicaCount: 2
 
 image:
   repository: theeb2000/product-services
-  tag: "v35"
+  tag: "v36"
   pullPolicy: Always
 
 service:
@@ -43,7 +43,7 @@ ingress:
 # production: 
 #   replicaCount: 3
 #   image:
-#     tag: "v15-prod"
+#     tag: "v36"
 #   service:
 #     type: LoadBalancer
 #   hpa:
