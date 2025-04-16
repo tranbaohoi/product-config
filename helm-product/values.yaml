@@ -1,7 +1,7 @@
 # Cấu hình cho namespace và môi trường
 namespace: app-demo
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: theeb2000/product-services
