@@ -1,0 +1,64 @@
+# Cấu hình cho namespace và môi trường
+namespace: app-demo
+
+replicaCount: 2
+
+image:
+  repository: theeb2000/product-services
+  tag: "v35"
+  pullPolicy: Always
+
+service:
+  protocol: TCP
+  type: ClusterIP
+  port: 80         # Cổng mà service expose ra (người dùng truy cập)
+  targetPort: 8080   # Cổng mà container Spring Boot đang chạy
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  averageUtilization: 80
+
+config:
+  datasourceUrl: "jdbc:mysql://34.142.240.54:3306/microservices_db"
+  datasourceUsername: "hoitb"
+  datasourcePassword: "hoitb"
+  hibernateDdlAuto: "update"
+  serverPort: 8080
+
+secrets:
+  datasourcePassword: "hoitb"  # Lưu mật khẩu ở dạng base64 trong Secret
+
+ingress:
+  ingressClassName: nginx
+  enabled: true
+  host: product.local
+  path: /
+  tls:
+    enabled: false
+    secretName: ""
+
+# # Cấu hình cho môi trường sản xuất
+# production: 
+#   replicaCount: 3
+#   image:
+#     tag: "v15-prod"
+#   service:
+#     type: LoadBalancer
+#   hpa:
+#     minReplicas: 2
+#     maxReplicas: 10
+#   config:
+#     datasourceUrl: "jdbc:mysql://prod-db-host:3306/microservices_db"
+#     datasourceUsername: "prod-hoitb"
+#     datasourcePassword: "prod-hoitb"
+#     hibernateDdlAuto: "update"
+#     serverPort: 8080
+#   secrets:
+#     datasourcePassword: "prod-hoitb"
+#   ingress:
+#     host: product-service-prod.app-demo.example.com
+#     tls:
+#       enabled: true
+#       secretName: product-service-prod-tls-secret
