@@ -11,7 +11,7 @@ image:
 service:
   protocol: TCP
   type: ClusterIP
-  port: 80         # Cổng mà service expose ra (người dùng truy cập)
+  port: 8081         # Cổng mà service expose ra (người dùng truy cập)
   targetPort: 8080   # Cổng mà container Spring Boot đang chạy
 
 hpa:
